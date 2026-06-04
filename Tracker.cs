@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 
 namespace TimeTracker
@@ -16,23 +15,22 @@ namespace TimeTracker
         [DllImport("user32.dll")]
         private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
 
-        private struct ActivityRecord
-        {
-            public string ExecutableName;
-            public DateTime StartTime;
-            public DateTime EndTime;
-            public TimeSpan Duration;
-        }
-
         private NotifyIcon _trayIcon;
         private Timer _timer;
         private string _currentExeName;
         private DateTime _currentStartTime;
-        private List<ActivityRecord> _records;
+        private string _logFilePath;
 
         public Tracker()
         {
-            _records = new List<ActivityRecord>();
+            string folder = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "TimeTracker");
+            Directory.CreateDirectory(folder);
+            _logFilePath = Path.Combine(folder, DateTime.Now.ToString("yyyy-M-d") + "-app.csv");
+
+            if (!File.Exists(_logFilePath))
+                File.WriteAllText(_logFilePath, "LogTimestamp,ApplicationName,StartTimestamp,EndTimestamp,DurationInSeconds\r\n");
 
             _trayIcon = new NotifyIcon
             {
@@ -72,6 +70,14 @@ namespace TimeTracker
             }
         }
 
+        private void WriteRecord(string appName, DateTime start, DateTime end)
+        {
+            int seconds = (int)(end - start).TotalSeconds;
+            string line = string.Format("{0:yyyy-MM-dd HH:mm:ss},{1},{2:yyyy-MM-dd HH:mm:ss},{3:yyyy-MM-dd HH:mm:ss},{4}",
+                DateTime.Now, appName, start, end, seconds);
+            File.AppendAllText(_logFilePath, line + "\r\n");
+        }
+
         private void OnTimerTick(object sender, EventArgs e)
         {
             string exeName = GetActiveWindowExeName();
@@ -83,15 +89,7 @@ namespace TimeTracker
                 DateTime now = DateTime.Now;
 
                 if (_currentExeName != null)
-                {
-                    _records.Add(new ActivityRecord
-                    {
-                        ExecutableName = _currentExeName,
-                        StartTime = _currentStartTime,
-                        EndTime = now,
-                        Duration = now - _currentStartTime
-                    });
-                }
+                    WriteRecord(_currentExeName, _currentStartTime, now);
 
                 _currentExeName = exeName;
                 _currentStartTime = now;
@@ -117,6 +115,10 @@ namespace TimeTracker
         private void OnExit(object sender, EventArgs e)
         {
             _timer.Stop();
+
+            if (_currentExeName != null)
+                WriteRecord(_currentExeName, _currentStartTime, DateTime.Now);
+
             _timer.Dispose();
             _trayIcon.Visible = false;
             _trayIcon.Dispose();
