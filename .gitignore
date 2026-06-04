@@ -1,0 +1,25 @@
+## Build output
+bin/
+obj/
+
+## Visual Studio user-specific files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## NuGet
+packages/
+*.nupkg
+
+## JetBrains ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+## Visual Studio Code
+.vscode/
+
+## OS junk
+Thumbs.db
+Desktop.ini
