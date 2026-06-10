@@ -90,13 +90,13 @@ namespace TimeTrackerDisplay
             {
                 var tab = new TabPage(day.Date.ToString("yyyy-M-d"));
 
-                 var sc = new SplitContainer
-                 {
-                     Dock = DockStyle.Fill,
-                     Orientation = Orientation.Horizontal,
-                     SplitterDistance = sc.ClientSize.Height / 3,
-                     SplitterWidth = 4
-                 };
+                var sc = new SplitContainer
+                {
+                    Dock = DockStyle.Fill,
+                    Orientation = Orientation.Horizontal,
+                    SplitterWidth = 4
+                };
+                sc.SplitterDistance = sc.ClientSize.Height / 3;
 
                 sc.Panel1.Controls.Add(new TimelinePanel
                 {
