@@ -2,6 +2,7 @@
 bin/
 obj/
 publish/
+TimeTracker_TemporaryKey.pfx
 
 ## Visual Studio user-specific files
 .vs/
