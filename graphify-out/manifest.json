@@ -1,0 +1,87 @@
+{
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\Program.cs": {
+    "mtime": 1780548822.62501,
+    "ast_hash": "89ceb30d033dcc1024e18fc1cda6352b",
+    "semantic_hash": "89ceb30d033dcc1024e18fc1cda6352b"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTracker.csproj": {
+    "mtime": 1780759209.6911957,
+    "ast_hash": "2422739482b85509884a50f6e8aed59a",
+    "semantic_hash": "2422739482b85509884a50f6e8aed59a"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTracker.sln": {
+    "mtime": 1780991092.763111,
+    "ast_hash": "3a6bcc0dea512dafe0a5555f2aea8efb",
+    "semantic_hash": "3a6bcc0dea512dafe0a5555f2aea8efb"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\Tracker.cs": {
+    "mtime": 1780758916.9447913,
+    "ast_hash": "1315626b2abfffadb8504b3692e98f6c",
+    "semantic_hash": "1315626b2abfffadb8504b3692e98f6c"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\Properties\\AssemblyInfo.cs": {
+    "mtime": 1780548678.83124,
+    "ast_hash": "7b54821ce1dea969341ed7d4c5caccc2",
+    "semantic_hash": "7b54821ce1dea969341ed7d4c5caccc2"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\Properties\\Resources.Designer.cs": {
+    "mtime": 1780548679.0554984,
+    "ast_hash": "6bce340aceb9639e2651393325c3a1da",
+    "semantic_hash": "6bce340aceb9639e2651393325c3a1da"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\Properties\\Settings.Designer.cs": {
+    "mtime": 1780759187.2179382,
+    "ast_hash": "1a6364bc9631ee2df8248f9f7a3134dd",
+    "semantic_hash": "1a6364bc9631ee2df8248f9f7a3134dd"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTrackerDisplay\\CsvData.cs": {
+    "mtime": 1780991020.4015253,
+    "ast_hash": "f353fdde240364f2cba66f0a8eb9863d",
+    "semantic_hash": "f353fdde240364f2cba66f0a8eb9863d"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTrackerDisplay\\MainForm.cs": {
+    "mtime": 1781431573.9417183,
+    "ast_hash": "a83f9a69039248a2afcef58e23b471f4",
+    "semantic_hash": "a83f9a69039248a2afcef58e23b471f4"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTrackerDisplay\\MainForm.Designer.cs": {
+    "mtime": 1781020396.1197186,
+    "ast_hash": "97d826d7f76b71080ef91bcec7ff8add",
+    "semantic_hash": "97d826d7f76b71080ef91bcec7ff8add"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTrackerDisplay\\Program.cs": {
+    "mtime": 1780991066.812531,
+    "ast_hash": "21376ab59a30d866c276dac46f75a875",
+    "semantic_hash": "21376ab59a30d866c276dac46f75a875"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTrackerDisplay\\TimelinePanel.cs": {
+    "mtime": 1781020440.232382,
+    "ast_hash": "7d06d0c5844983943edad67e7ea6faa5",
+    "semantic_hash": "7d06d0c5844983943edad67e7ea6faa5"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTrackerDisplay\\TimeTrackerDisplay.csproj": {
+    "mtime": 1780991079.5819242,
+    "ast_hash": "6b846272fb9dca2874f0732c1fbb2e84",
+    "semantic_hash": "6b846272fb9dca2874f0732c1fbb2e84"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTrackerDisplay\\Properties\\AssemblyInfo.cs": {
+    "mtime": 1780991126.3439462,
+    "ast_hash": "1d68e856f8ed2d0e8727f0c565c7cb1a",
+    "semantic_hash": "1d68e856f8ed2d0e8727f0c565c7cb1a"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTrackerDisplay\\Properties\\Resources.Designer.cs": {
+    "mtime": 1780987060.6651404,
+    "ast_hash": "95586ce3d994418cb68717fa0f362b7d",
+    "semantic_hash": "95586ce3d994418cb68717fa0f362b7d"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\TimeTrackerDisplay\\Properties\\Settings.Designer.cs": {
+    "mtime": 1780987060.6761396,
+    "ast_hash": "b51e29e5570296b79cb559476ec228d4",
+    "semantic_hash": "b51e29e5570296b79cb559476ec228d4"
+  },
+  "D:\\Users\\PERSONAL\\Documents\\GitHub\\c#-projects\\TimeTracker\\AGENTS.md": {
+    "mtime": 1780991188.7134006,
+    "ast_hash": "5fc1e37ca21b314c0032fd13c62f8746",
+    "semantic_hash": "5fc1e37ca21b314c0032fd13c62f8746"
+  }
+}

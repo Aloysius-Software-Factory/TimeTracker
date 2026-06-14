@@ -1,0 +1,508 @@
+{
+  "nodes": [
+    {
+      "id": "timetracker_TimeTrackerProject",
+      "label": "TimeTracker (tray logger)",
+      "file_type": "code",
+      "source_file": "TimeTracker.csproj",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Tray icon background app that logs foreground window changes and idle/active state to CSV files"
+    },
+    {
+      "id": "timetracker_TimeTrackerDisplayProject",
+      "label": "TimeTrackerDisplay (CSV viewer)",
+      "file_type": "code",
+      "source_file": "TimeTrackerDisplay/TimeTrackerDisplay.csproj",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "WinForms app that reads the CSV files and visualizes them with pie charts and activity timelines"
+    },
+    {
+      "id": "timetracker_TimeTrackerSolution",
+      "label": "TimeTracker Solution",
+      "file_type": "document",
+      "source_file": "TimeTracker.sln",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetracker_TrackerProgram",
+      "label": "TimeTracker.Program",
+      "file_type": "code",
+      "source_file": "Program.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetracker_Tracker",
+      "label": "TimeTracker.Tracker",
+      "file_type": "code",
+      "source_file": "Tracker.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetracker_IdleSettings",
+      "label": "TimeTracker.IdleSettings",
+      "file_type": "code",
+      "source_file": "Properties/Settings.Designer.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetracker_AGENTSDoc",
+      "label": "AGENTS.md Documentation",
+      "file_type": "document",
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetrackerdisplay_DisplayProgram",
+      "label": "TimeTrackerDisplay.Program",
+      "file_type": "code",
+      "source_file": "TimeTrackerDisplay/Program.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetrackerdisplay_MainForm",
+      "label": "TimeTrackerDisplay.MainForm",
+      "file_type": "code",
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetrackerdisplay_TimelinePanel",
+      "label": "TimeTrackerDisplay.TimelinePanel",
+      "file_type": "code",
+      "source_file": "TimeTrackerDisplay/TimelinePanel.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetrackerdisplay_CsvParser",
+      "label": "TimeTrackerDisplay.CsvParser",
+      "file_type": "code",
+      "source_file": "TimeTrackerDisplay/CsvData.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetrackerdisplay_AppLogRecord",
+      "label": "TimeTrackerDisplay.AppLogRecord",
+      "file_type": "code",
+      "source_file": "TimeTrackerDisplay/CsvData.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetrackerdisplay_IdleLogRecord",
+      "label": "TimeTrackerDisplay.IdleLogRecord",
+      "file_type": "code",
+      "source_file": "TimeTrackerDisplay/CsvData.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetrackerdisplay_DayData",
+      "label": "TimeTrackerDisplay.DayData",
+      "file_type": "code",
+      "source_file": "TimeTrackerDisplay/CsvData.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetrackerdisplay_FilePair",
+      "label": "TimeTrackerDisplay.FilePair",
+      "file_type": "code",
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "timetracker_CSVLogFormat",
+      "label": "CSV Log File Format",
+      "file_type": "rationale",
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "CSV used as zero-dependency data exchange format. TimeTracker writes {yyyy-M-d}-app.csv and {yyyy-M-d}-idle.csv to %%LOCALAPPDATA%%\\\\TimeTracker\\. TimeTrackerDisplay reads and parses them with auto-pair discovery."
+    },
+    {
+      "id": "timetracker_IdleDetection",
+      "label": "Idle Detection via Cursor + Keyboard",
+      "file_type": "rationale",
+      "source_file": "Tracker.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Idle state determined by cumulative cursor movement distance and key press count over a configurable time window (default 3 min). Thresholds stored in app settings: CursorMoveThresholdPixels (2000), KeyInputThreshold (10)."
+    },
+    {
+      "id": "timetracker_PieChartVisualization",
+      "label": "Pie Chart Visualization",
+      "file_type": "rationale",
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Uses built-in System.Windows.Forms.DataVisualization.Charting to render two pie charts per day: app usage grouped by application name, and active/idle status breakdown. No NuGet dependencies required."
+    },
+    {
+      "id": "timetracker_AutoPairDiscovery",
+      "label": "Auto CSV Pair Discovery",
+      "file_type": "rationale",
+      "source_file": "TimeTrackerDisplay/CsvData.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "CsvParser.DiscoverPairedFiles() regex-matches filenames {date}-app.csv and {date}-idle.csv to auto-include siblings when user selects one file of a pair."
+    },
+    {
+      "id": "timetracker_WinFormsFramework",
+      "label": "WinForms UI Framework (.NET 4.0)",
+      "file_type": "rationale",
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Both projects target .NET Framework 4.0 using WinForms, maximizing compatibility with Visual Studio 2019 and avoiding additional framework dependencies."
+    },
+    {
+      "id": "timetracker_TimelineBar",
+      "label": "Timeline Bar Visualization",
+      "file_type": "rationale",
+      "source_file": "TimeTrackerDisplay/TimelinePanel.cs",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "rationale": "Custom Panel subclass draws color-coded horizontal timeline: green=active, orange=idle. Second bar shows per-application segments. Hourly tick marks with time labels. Legend in top-left corner."
+    }
+  ],
+  "edges": [
+    {
+      "source": "timetracker_TimeTrackerSolution",
+      "target": "timetracker_TimeTrackerProject",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTracker.sln",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "timetracker_TimeTrackerSolution",
+      "target": "timetracker_TimeTrackerDisplayProject",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTracker.sln",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "timetracker_TrackerProgram",
+      "target": "timetracker_Tracker",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Program.cs",
+      "source_location": 18,
+      "weight": 1.0
+    },
+    {
+      "source": "timetracker_Tracker",
+      "target": "timetracker_IdleSettings",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "Tracker.cs",
+      "source_location": 148,
+      "weight": 1.0
+    },
+    {
+      "source": "timetracker_AGENTSDoc",
+      "target": "timetracker_TimeTrackerProject",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "timetracker_AGENTSDoc",
+      "target": "timetracker_TimeTrackerDisplayProject",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_DisplayProgram",
+      "target": "timetrackerdisplay_MainForm",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/Program.cs",
+      "source_location": 13,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_MainForm",
+      "target": "timetrackerdisplay_CsvParser",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": 108,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_MainForm",
+      "target": "timetrackerdisplay_TimelinePanel",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": 167,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_MainForm",
+      "target": "timetrackerdisplay_AppLogRecord",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": 132,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_MainForm",
+      "target": "timetrackerdisplay_IdleLogRecord",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": 133,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_MainForm",
+      "target": "timetrackerdisplay_DayData",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": 129,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_MainForm",
+      "target": "timetrackerdisplay_FilePair",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": 110,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_CsvParser",
+      "target": "timetrackerdisplay_AppLogRecord",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/CsvData.cs",
+      "source_location": 63,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_CsvParser",
+      "target": "timetrackerdisplay_IdleLogRecord",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/CsvData.cs",
+      "source_location": 95,
+      "weight": 1.0
+    },
+    {
+      "source": "timetracker_TimeTrackerProject",
+      "target": "timetracker_TimeTrackerDisplayProject",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "AGENTS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "timetracker_Tracker",
+      "target": "timetracker_CSVLogFormat",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "Tracker.cs",
+      "source_location": 52,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_CsvParser",
+      "target": "timetracker_CSVLogFormat",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "TimeTrackerDisplay/CsvData.cs",
+      "source_location": 51,
+      "weight": 1.0
+    },
+    {
+      "source": "timetracker_Tracker",
+      "target": "timetracker_IdleDetection",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "Tracker.cs",
+      "source_location": 134,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_MainForm",
+      "target": "timetracker_PieChartVisualization",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": 40,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_CsvParser",
+      "target": "timetracker_AutoPairDiscovery",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "TimeTrackerDisplay/CsvData.cs",
+      "source_location": 113,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_TimelinePanel",
+      "target": "timetracker_TimelineBar",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "TimeTrackerDisplay/TimelinePanel.cs",
+      "source_location": 59,
+      "weight": 1.0
+    },
+    {
+      "source": "timetracker_Tracker",
+      "target": "timetracker_TimeTrackerProject",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "Tracker.cs",
+      "source_location": 48,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_MainForm",
+      "target": "timetracker_TimeTrackerDisplayProject",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "TimeTrackerDisplay/MainForm.cs",
+      "source_location": 93,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_TimelinePanel",
+      "target": "timetrackerdisplay_AppLogRecord",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/TimelinePanel.cs",
+      "source_location": 12,
+      "weight": 1.0
+    },
+    {
+      "source": "timetrackerdisplay_TimelinePanel",
+      "target": "timetrackerdisplay_IdleLogRecord",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "TimeTrackerDisplay/TimelinePanel.cs",
+      "source_location": 11,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

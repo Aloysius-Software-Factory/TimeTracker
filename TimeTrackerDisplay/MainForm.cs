@@ -7,6 +7,12 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace TimeTrackerDisplay
 {
+    public class FilePair
+    {
+        public string AppFile;
+        public string IdleFile;
+    }
+
     public partial class MainForm : Form
     {
         private List<DayData> _allDays = new List<DayData>();
@@ -31,10 +37,70 @@ namespace TimeTrackerDisplay
             }
         }
 
-        private class FilePair
+        private Chart BuildStatusPieChart(DayData day, bool hasTimeFilter, TimeSpan timeFrom, TimeSpan timeTo)
         {
-            public string AppFile;
-            public string IdleFile;
+            var chart = new Chart { Dock = DockStyle.Fill };
+            var area = new ChartArea();
+            area.Area3DStyle.Enable3D = false;
+            chart.ChartAreas.Add(area);
+
+            var series = new Series("StatusDuration")
+            {
+                ChartType = SeriesChartType.Pie,
+                IsValueShownAsLabel = false,
+                Font = new Font("Segoe UI", 8),
+                BorderWidth = 1,
+                BorderColor = Color.White
+            };
+
+            var idleRecords = day.IdleRecords;
+            if (hasTimeFilter)
+            {
+                idleRecords = idleRecords
+                    .Where(r => r.StartTimestamp.TimeOfDay < timeTo && r.EndTimestamp.TimeOfDay > timeFrom)
+                    .ToList();
+            }
+
+            var statusGroups = idleRecords
+                .GroupBy(r => r.Status.ToLower())
+                .Select(g => new { Status = g.Key, TotalSeconds = g.Sum(r => r.DurationMinutes * 60) })
+                .Where(x => x.TotalSeconds > 0)
+                .OrderByDescending(x => x.TotalSeconds)
+                .ToList();
+
+            if (statusGroups.Count == 0)
+            {
+                var noData = new Label
+                {
+                    Text = "No status data for this period",
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    ForeColor = Color.Gray
+                };
+                chart.Controls.Add(noData);
+                return chart;
+            }
+
+            for (int i = 0; i < statusGroups.Count; i++)
+            {
+                var g = statusGroups[i];
+                var point = series.Points.AddXY(g.Status, g.TotalSeconds);
+                var ts = TimeSpan.FromSeconds(g.TotalSeconds);
+                series.Points[i].Label = $"{(int)ts.TotalHours:D2}:{ts.Minutes:D2}:{ts.Seconds:D2}";
+                series.Points[i].LegendText = g.Status;
+            }
+
+            chart.Series.Add(series);
+
+            var legend = new Legend("Legend")
+            {
+                Docking = Docking.Bottom,
+                Alignment = StringAlignment.Center,
+                LegendStyle = LegendStyle.Table
+            };
+            chart.Legends.Add(legend);
+
+            return chart;
         }
 
         private void LoadFiles(string[] selectedFiles)
@@ -107,7 +173,15 @@ namespace TimeTrackerDisplay
                     FilterEnd = hasTimeFilter ? timeTo : (TimeSpan?)null
                 });
 
-                sc.Panel2.Controls.Add(BuildPieChart(day, hasTimeFilter, timeFrom, timeTo));
+                var chartContainer = new SplitContainer
+                {
+                    Dock = DockStyle.Fill,
+                    Orientation = Orientation.Vertical,
+                    SplitterWidth = 4
+                };
+                chartContainer.Panel1.Controls.Add(BuildPieChart(day, hasTimeFilter, timeFrom, timeTo));
+                chartContainer.Panel2.Controls.Add(BuildStatusPieChart(day, hasTimeFilter, timeFrom, timeTo));
+                sc.Panel2.Controls.Add(chartContainer);
 
                 tab.Controls.Add(sc);
                 tabControl.TabPages.Add(tab);
@@ -127,6 +201,7 @@ namespace TimeTrackerDisplay
                 tabControl.TabPages.Add(empty);
             }
         }
+
 
         private Chart BuildPieChart(DayData day, bool hasTimeFilter, TimeSpan timeFrom, TimeSpan timeTo)
         {
@@ -172,7 +247,7 @@ namespace TimeTrackerDisplay
                 return chart;
             }
 
-            for(int i = 0; i < appGroups.Count; i++)
+            for (int i = 0; i < appGroups.Count; i++)
             {
                 var g = appGroups[i];
                 var point = series.Points.AddXY(g.Name, g.TotalSeconds);
@@ -194,4 +269,6 @@ namespace TimeTrackerDisplay
             return chart;
         }
     }
+
+    
 }
