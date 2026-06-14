@@ -138,8 +138,7 @@ namespace TimeTrackerDisplay
             var series = new Series("Duration")
             {
                 ChartType = SeriesChartType.Pie,
-                IsValueShownAsLabel = true,
-                LabelFormat = "#,##0s",
+                IsValueShownAsLabel = false,
                 Font = new Font("Segoe UI", 8),
                 BorderWidth = 1,
                 BorderColor = Color.White
@@ -173,8 +172,14 @@ namespace TimeTrackerDisplay
                 return chart;
             }
 
-            foreach (var g in appGroups)
-                series.Points.AddXY(g.Name, g.TotalSeconds);
+            for(int i = 0; i < appGroups.Count; i++)
+            {
+                var g = appGroups[i];
+                var point = series.Points.AddXY(g.Name, g.TotalSeconds);
+                var ts = TimeSpan.FromSeconds(g.TotalSeconds);
+                series.Points[i].Label = $"{(int)ts.TotalHours:D2}:{ts.Minutes:D2}:{ts.Seconds:D2}";
+                series.Points[i].LegendText = g.Name;
+            }
 
             chart.Series.Add(series);
 
