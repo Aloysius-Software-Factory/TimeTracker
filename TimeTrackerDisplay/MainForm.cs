@@ -7,15 +7,10 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace TimeTrackerDisplay
 {
-    public class FilePair
-    {
-        public string AppFile;
-        public string IdleFile;
-    }
-
     public partial class MainForm : Form
     {
-        private List<DayData> _allDays = new List<DayData>();
+        private MainFormDataService _service = new MainFormDataService();
+        private IList<DayData> AllDays => _service.AllDays;
 
         public MainForm()
         {
@@ -33,7 +28,10 @@ namespace TimeTrackerDisplay
                 dialog.Title = "Select time tracker CSV files";
 
                 if (dialog.ShowDialog() == DialogResult.OK)
-                    LoadFiles(dialog.FileNames);
+                {
+                    _service.LoadFiles(dialog.FileNames);
+                    this.ApplyFilter();
+                }
             }
         }
 
@@ -103,40 +101,6 @@ namespace TimeTrackerDisplay
             return chart;
         }
 
-        private void LoadFiles(string[] selectedFiles)
-        {
-            var allFiles = CsvParser.DiscoverPairedFiles(selectedFiles);
-
-            var fileGroups = new SortedDictionary<DateTime, FilePair>();
-            foreach (var file in allFiles)
-            {
-                var date = CsvParser.ParseDateFromFileName(file);
-                if (date == null) continue;
-                var type = CsvParser.GetFileType(file);
-                if (!fileGroups.ContainsKey(date.Value))
-                    fileGroups[date.Value] = new FilePair();
-                var g = fileGroups[date.Value];
-                if (type == "app")
-                    g.AppFile = file;
-                else
-                    g.IdleFile = file;
-            }
-
-            TimelinePanel.ResetAppColors();
-            _allDays.Clear();
-            foreach (var kvp in fileGroups)
-            {
-                _allDays.Add(new DayData
-                {
-                    Date = kvp.Key,
-                    AppRecords = kvp.Value.AppFile != null ? CsvParser.ParseAppLog(kvp.Value.AppFile) : new List<AppLogRecord>(),
-                    IdleRecords = kvp.Value.IdleFile != null ? CsvParser.ParseIdleLog(kvp.Value.IdleFile) : new List<IdleLogRecord>()
-                });
-            }
-
-            ApplyFilter();
-        }
-
         private void BtnApply_Click(object sender, EventArgs e)
         {
             ApplyFilter();
@@ -148,7 +112,7 @@ namespace TimeTrackerDisplay
             var timeTo = dtpTimeTo.Value.TimeOfDay;
             bool hasTimeFilter = timeFrom != timeTo;
 
-            var filtered = _allDays.OrderBy(d => d.Date).ToList();
+            var filtered = _service.AllDays.OrderBy(d => d.Date).ToList();
 
             tabControl.TabPages.Clear();
 
@@ -269,6 +233,4 @@ namespace TimeTrackerDisplay
             return chart;
         }
     }
-
-    
 }
