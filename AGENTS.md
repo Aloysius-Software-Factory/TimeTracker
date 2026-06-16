@@ -1,58 +1,46 @@
 # TimeTracker — AGENTS.md
 
-## Project
-
-Two-project .NET Framework 4.0 solution: **TimeTracker** (tray logger) and **TimeTrackerDisplay** (CSV viewer), built with Visual Studio 2019.
-
 ## Build
 
 ```powershell
 msbuild TimeTracker.sln /p:Configuration=Debug
-# or
-dotnet build TimeTracker.sln   # requires .NET Framework targeting pack
+# or (requires .NET Framework targeting pack)
+dotnet build TimeTracker.sln
 ```
 
-## Known issues
+Outputs go to `bin\Debug\` and `TimeTrackerDisplay\bin\Debug\`.
 
-- Target framework is `v4.0`; requires Visual Studio 2019 (or compatible MSBuild + .NET Framework 4.0 SDK) to build.
-- No tests, no CI, no package dependencies.
+## Solution (.NET Framework 4.0, WinForms, VS2019)
 
-## Projects
+Two projects, zero NuGet dependencies, zero tests, no CI.
 
-### TimeTracker (tray logger)
+### TimeTracker (tray logger, `Tracker.cs`)
 
-Tray icon background app that logs foreground window changes and idle/active state to CSV files.
+- `Program.cs` → `Application.Run(new Tracker())` (STAThread entry point)
+- `Tracker.cs` → `ApplicationContext` with 1-second `Timer` that polls `GetForegroundWindow` for active exe changes and checks cursor/keyboard for idle detection
+- Idle thresholds in `app.config` (via `Properties.Settings`):
+  - `IdleThresholdMinutes` = 3 (window before idle check triggers)
+  - `CursorMoveThresholdPixels` = 2000 (total Euclidean distance)
+  - `KeyInputThreshold` = 10 (total key presses)
+- Writes `{yyyy-M-d}-app.csv` and `{yyyy-M-d}-idle.csv` to `%LOCALAPPDATA%\TimeTracker\`
+- Tray icon with "Exit" context menu; flushes pending records on exit
 
-| File | Role |
-|---|---|
-| `Program.cs` | STAEntryPoint — calls `Application.Run(new Tracker())` |
-| `Tracker.cs` | `ApplicationContext` with timer that polls foreground window, cursor/keyboard for idle detection |
-| `Properties/` | Assembly metadata, settings (idle thresholds), resources |
+### TimeTrackerDisplay (CSV viewer, `TimeTrackerDisplay\`)
 
-Outputs `{yyyy-M-d}-app.csv` and `{yyyy-M-d}-idle.csv` to `%LOCALAPPDATA%\TimeTracker\`.
+- WinForms viewer: file picker → `CsvParser.DiscoverPairedFiles` (auto-discovers `-app`/`-idle` pairs in same dir) → per-day tabbed view
+- Each tab: top half = `TimelinePanel` (custom `Panel`, green=active/orange=idle bar), bottom half = two pie charts (app usage + active/idle breakdown)
+- Date/time filters (from/to) with `NumericUpDown` selectors for time range
+- Charts use `System.Windows.Forms.DataVisualization.Charting` (built-in, no NuGet)
 
-### TimeTrackerDisplay (CSV viewer)
+## CSV format
 
-WinForms app that reads the CSV files and visualizes them with pie charts and activity timelines.
-
-| File | Role |
-|---|---|
-| `Program.cs` | STAEntryPoint |
-| `MainForm.cs` | Main form — file selection, date/time filters, tabbed per-day display |
-| `MainForm.Designer.cs` | Control layout |
-| `CsvData.cs` | Data models (`AppLogRecord`, `IdleLogRecord`, `DayData`) and CSV parser with auto-pair discovery |
-| `TimelinePanel.cs` | Custom `Panel` that draws a colour-coded active/idle timeline bar |
-| `Properties/` | Assembly metadata |
-
-Features:
-- **Open CSV Files** button (multi-select) — auto-discovers paired `-app`/`-idle` files in same directory
-- **Date range** filter (from/to)
-- **Time range** filter (from/to, with up/down selectors)
-- Per-day tabbed view: **pie chart** (app usage grouped by application name) + **timeline bar** (green=active, orange=idle)
-- Uses built-in `System.Windows.Forms.DataVisualization` charting (no NuGet dependencies)
+- `-app.csv` header: `LogTimestamp,ApplicationName,StartTimestamp,EndTimestamp,DurationInSeconds`
+- `-idle.csv` header: `Status,StartTimestamp,EndTimestamp,DurationMinutes`
+- Simple comma-separated, no quoting/escaping
 
 ## Conventions
 
 - Namespace: `TimeTracker` / `TimeTrackerDisplay`
-- UI framework: WinForms (`System.Windows.Forms`)
-- Charts: `System.Windows.Forms.DataVisualization.Charting`
+- No async/await, no LINQ-heavy patterns (used sparingly in Display only)
+- All UI in `System.Windows.Forms`; no WPF
+- No test project, no test framework
